@@ -13,12 +13,12 @@ services:
     volumes:
       - ./triton/models:/models
     command: ["tritonserver", "--model-store=/models"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
-              count: 1
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: [gpu]
+    #           count: 1
 
   # Контейнер для конвертации модели в trt из onnx
   trtexec_container:
@@ -27,12 +27,12 @@ services:
     volumes:
       - ./trtexec_workspace:/workspace
     command: ["tail", "-f", "/dev/null"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
-              count: 1
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: [gpu]
+    #           count: 1
 
   # Prometheus для сбора метрик
   prometheus:
